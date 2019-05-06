@@ -3,6 +3,7 @@ package com.jdbclib.application.pojo.query;
 public class EmpQuery {
     private String insert;
     private String all;
+    private String countAll;
 
     public String getInsert() {
         return insert;
@@ -19,5 +20,15 @@ public class EmpQuery {
     public void setAll(String all) {
         this.all = all;
     }
+
+    public String getCountAll() {
+        return countAll;
+    }
+
+    public void setCountAll(String countAll) {
+        this.countAll = countAll;
+    }
+    
+    
 
 }

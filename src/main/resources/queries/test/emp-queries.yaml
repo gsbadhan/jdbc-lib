@@ -1,2 +1,3 @@
 insert: "insert into emp(name,dept,salary) values (:name, :dept, :salary)"
 all: "select id, name, dept, salary from emp"
+countAll: "select count(*) from emp"

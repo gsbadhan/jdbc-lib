@@ -57,6 +57,19 @@ public class EmpDaoImplTest {
 
         List<Emp> status = empDao.getAll();
         assertNotNull(status);
+        status.forEach(em -> System.out.println(em));
+        boolean isClose = factory.releaseConnection(connection);
+        assertTrue(isClose);
+    }
+
+    @Test
+    public void testCountAll() {
+        Connection connection = factory.getConnection();
+        assertNotNull(connection);
+
+        long count = empDao.countAll();
+        assertNotNull(count);
+        System.out.println("emp count:" + count);
         boolean isClose = factory.releaseConnection(connection);
         assertTrue(isClose);
     }

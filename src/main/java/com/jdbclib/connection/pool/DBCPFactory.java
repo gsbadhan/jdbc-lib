@@ -22,6 +22,7 @@ public class DBCPFactory extends AbstractConnectionFactory implements Connection
         ds.setPassword(password);
         ds.setInitialSize(initialPoolSize);
         ds.setMaxActive(maxPoolSize);
+        ds.setDefaultAutoCommit(autoCommit);
     }
 
     @Override

@@ -14,9 +14,8 @@ public class Rows {
 
     public static <T> T single(ResultSet rs, RowMapper<T> rowMapper) {
         try {
-            if (rs == null || rs.getFetchSize() == 0)
+            if (rs == null)
                 return null;
-
             rs.next();
             return rowMapper.mapRow(rs, 1);
         } catch (Exception e) {
@@ -26,9 +25,8 @@ public class Rows {
 
     public static <T> List<T> list(ResultSet rs, RowMapper<T> rowMapper) {
         try {
-            if (rs == null || rs.getFetchSize() == 0)
+            if (rs == null)
                 return Collections.emptyList();
-
             int rownum = 1;
             List<T> list = new ArrayList<>(rs.getFetchSize());
             while (rs.next()) {

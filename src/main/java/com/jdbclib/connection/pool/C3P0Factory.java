@@ -24,6 +24,7 @@ public class C3P0Factory extends AbstractConnectionFactory implements Connection
             ds.setPassword(password);
             ds.setInitialPoolSize(initialPoolSize);
             ds.setMaxPoolSize(maxPoolSize);
+            ds.setAutoCommitOnClose(autoCommit);
 
         } catch (Exception e) {
             throw new JDBCException(e);

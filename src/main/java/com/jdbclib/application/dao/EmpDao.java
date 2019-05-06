@@ -7,4 +7,5 @@ import com.jdbclib.application.pojo.model.Emp;
 public interface EmpDao {
     boolean save(String name, String dept, float salary);
     List<Emp> getAll();
+    Long countAll();
 }

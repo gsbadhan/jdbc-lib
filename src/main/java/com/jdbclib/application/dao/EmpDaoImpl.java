@@ -10,6 +10,7 @@ import java.util.Map;
 
 import com.jdbclib.application.pojo.model.Emp;
 import com.jdbclib.application.pojo.query.EmpQuery;
+import com.jdbclib.common.LongRowMapper;
 import com.jdbclib.common.RowMapper;
 import com.jdbclib.common.Rows;
 import com.jdbclib.connection.pool.ConnectionPool;
@@ -66,7 +67,20 @@ public class EmpDaoImpl implements EmpDao {
             connection = connectionPool.getConnection();
             String sql = empQuery.getAll();
             ResultSet resultSet = QueryExecution.executeQuery(StatementFactory.prepareStatement(connection, sql, Collections.emptyMap()));
-            return  Rows.list(resultSet, rowMapper);
+            return Rows.list(resultSet, rowMapper);
+        } finally {
+            connectionPool.releaseConnection(connection);
+        }
+    }
+
+    @Override
+    public Long countAll() {
+        Connection connection = null;
+        try {
+            connection = connectionPool.getConnection();
+            String sql = empQuery.getCountAll();
+            ResultSet resultSet = QueryExecution.executeQuery(StatementFactory.prepareStatement(connection, sql, Collections.emptyMap()));
+            return Rows.single(resultSet, new LongRowMapper());
         } finally {
             connectionPool.releaseConnection(connection);
         }
