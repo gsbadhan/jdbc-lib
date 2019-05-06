@@ -6,11 +6,14 @@ import static org.junit.Assert.assertTrue;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.jdbclib.application.pojo.model.Emp;
 import com.jdbclib.common.YamlUtils;
 import com.jdbclib.connection.pool.C3P0Factory;
 import com.jdbclib.connection.pool.ConnectionPool;
@@ -45,5 +48,21 @@ public class EmpDaoImplTest {
         assertTrue(status);
         boolean isClose = factory.releaseConnection(connection);
         assertTrue(isClose);
+    }
+
+    @Test
+    public void testGetAll() {
+        Connection connection = factory.getConnection();
+        assertNotNull(connection);
+
+        List<Emp> status = empDao.getAll();
+        assertNotNull(status);
+        boolean isClose = factory.releaseConnection(connection);
+        assertTrue(isClose);
+    }
+
+    @After
+    public void destroy() {
+        factory.destroy();
     }
 }

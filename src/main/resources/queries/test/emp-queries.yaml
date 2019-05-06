@@ -1,2 +1,2 @@
 insert: "insert into emp(name,dept,salary) values (:name, :dept, :salary)"
-select: "select name, dept, salary from emp"
+all: "select id, name, dept, salary from emp"

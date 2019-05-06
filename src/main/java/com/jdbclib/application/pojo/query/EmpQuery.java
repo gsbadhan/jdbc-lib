@@ -2,7 +2,7 @@ package com.jdbclib.application.pojo.query;
 
 public class EmpQuery {
     private String insert;
-    private String select;
+    private String all;
 
     public String getInsert() {
         return insert;
@@ -12,12 +12,12 @@ public class EmpQuery {
         this.insert = insert;
     }
 
-    public String getSelect() {
-        return select;
+    public String getAll() {
+        return all;
     }
 
-    public void setSelect(String select) {
-        this.select = select;
+    public void setAll(String all) {
+        this.all = all;
     }
 
 }
