@@ -18,7 +18,7 @@ public class DBCPFactoryIT {
     private String      dbConfigFile = "/Users/gurpreet.singh/git/jdbc-lib/src/test/resources/db-config.yaml";
 
     @Test
-    public void up() throws FileNotFoundException, SQLException, PoolException {
+    public void up() throws FileNotFoundException, SQLException, JDBCException {
         Properties properties = YamlUtils.getProperties(dbConfigFile);
         assertNotNull(properties);
         factory = new DBCPFactory(properties);

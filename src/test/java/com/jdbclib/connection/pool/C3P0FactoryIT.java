@@ -19,7 +19,7 @@ public class C3P0FactoryIT {
     private String      dbConfigFile = "/Users/gurpreet.singh/git/jdbc-lib/src/test/resources/db-config.yaml";
 
     @Test
-    public void up() throws FileNotFoundException, SQLException, PoolException {
+    public void up() throws FileNotFoundException, SQLException, JDBCException {
         Properties properties = YamlUtils.getProperties(dbConfigFile);
         assertNotNull(properties);
         factory = new C3P0Factory(properties);

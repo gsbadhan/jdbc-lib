@@ -14,9 +14,8 @@ public class C3P0Factory extends AbstractConnectionFactory implements Connection
 
     private ComboPooledDataSource ds;
 
-
     @Override
-    public void init() throws PoolException {
+    public void init() {
         try {
             ds = new ComboPooledDataSource();
             ds.setDriverClass(driverClassName);
@@ -25,21 +24,30 @@ public class C3P0Factory extends AbstractConnectionFactory implements Connection
             ds.setPassword(password);
             ds.setInitialPoolSize(initialPoolSize);
             ds.setMaxPoolSize(maxPoolSize);
-            
+
         } catch (Exception e) {
-            throw new PoolException(e);
+            throw new JDBCException(e);
         }
 
     }
 
     @Override
-    public Connection getConnection() throws SQLException {
-        return ds.getConnection();
+    public Connection getConnection() {
+        try {
+            return ds.getConnection();
+        } catch (SQLException e) {
+            throw new JDBCException(e);
+        }
     }
 
     @Override
-    public boolean releaseConnection(Connection connection) throws SQLException {
-        connection.close();
+    public boolean releaseConnection(Connection connection) {
+        if (connection != null)
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new JDBCException(e);
+            }
         return true;
     }
 

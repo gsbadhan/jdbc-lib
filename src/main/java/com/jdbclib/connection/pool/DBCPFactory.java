@@ -14,7 +14,7 @@ public class DBCPFactory extends AbstractConnectionFactory implements Connection
     private BasicDataSource ds;
 
     @Override
-    public void init() throws PoolException {
+    public void init()  {
         ds = new BasicDataSource();
         ds.setDriverClassName(driverClassName);
         ds.setUrl(dbUrl);
@@ -25,19 +25,31 @@ public class DBCPFactory extends AbstractConnectionFactory implements Connection
     }
 
     @Override
-    public void destroy() throws SQLException {
-        ds.close();
-
+    public void destroy()  {
+        try {
+            ds.close();
+        } catch (SQLException e) {
+            throw new JDBCException(e);
+        }
     }
 
     @Override
-    public Connection getConnection() throws SQLException {
-        return ds.getConnection();
+    public Connection getConnection()  {
+        try {
+            return ds.getConnection();
+        } catch (SQLException e) {
+            throw new JDBCException(e);
+        }
     }
 
     @Override
-    public boolean releaseConnection(Connection connection) throws SQLException {
-        connection.close();
+    public boolean releaseConnection(Connection connection)  {
+        if (connection != null)
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new JDBCException(e);
+            }
         return true;
     }
 

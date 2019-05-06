@@ -18,7 +18,7 @@ import org.junit.Test;
 
 import com.jdbclib.common.YamlUtils;
 import com.jdbclib.connection.pool.C3P0Factory;
-import com.jdbclib.connection.pool.PoolException;
+import com.jdbclib.connection.pool.JDBCException;
 
 public class QueryExecutionIT {
 
@@ -26,7 +26,7 @@ public class QueryExecutionIT {
     private String      dbConfigFile = "/Users/gurpreet.singh/git/jdbc-lib/src/test/resources/db-config.yaml";
 
     @Before
-    public void up() throws FileNotFoundException, SQLException, PoolException {
+    public void up() throws FileNotFoundException, SQLException, JDBCException {
         Properties properties = YamlUtils.getProperties(dbConfigFile);
         assertNotNull(properties);
         factory = new C3P0Factory(properties);

@@ -1,14 +1,13 @@
 package com.jdbclib.connection.pool;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public interface ConnectionPool {
-    void init() throws PoolException;
+    void init();
 
-    void destroy() throws SQLException;
+    void destroy();
 
-    Connection getConnection() throws SQLException;
+    Connection getConnection();
 
-    boolean releaseConnection(Connection connection) throws SQLException;
+    boolean releaseConnection(Connection connection);
 }
